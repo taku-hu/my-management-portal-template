@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/useAuth'
 
+import { GlobalLoading } from '@/components/molecules/GlobalLoading'
+
 import type { FC } from 'react'
 
 export const AuthProtect: FC = ({ children }) => {
@@ -32,5 +34,5 @@ export const AuthProtect: FC = ({ children }) => {
     }
   }, [router, sessionCheck, isLoadingLoginUser, isLoginPageWithAuthneticated, isAuthRequiredPageWithNoAuthneticated])
 
-  return isNeedToWait ? <div>Loading...</div> :  <>{children}</>
+  return isNeedToWait ? <GlobalLoading /> :  <>{children}</>
 }
