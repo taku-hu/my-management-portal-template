@@ -5,13 +5,24 @@ import { StyleRoute } from '@/processingRoutes/StyleRoute'
 import { AuthProtect } from '@/processingRoutes/AuthProtect'
 
 import type { AppProps } from 'next/app'
+import type { NextPage } from 'next'
+import type { ReactElement, ReactNode } from 'react'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => page)
+
   return (
     <AllProviders>
       <StyleRoute>
         <AuthProtect>
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
         </AuthProtect>
       </StyleRoute>
     </AllProviders>
