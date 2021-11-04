@@ -25,7 +25,7 @@ const SignIn: NextPage = () => {
           ユーザー認証
         </Typography>
         <Box component="form" onSubmit={handleSubmit(authFormInput => signIn(authFormInput))} noValidate>
-          <FormControl error={!!errors.id} variant="outlined" sx={{ width: '100%', mb: 4 }}>
+          <FormControl error={!!errors.id} variant="outlined" sx={{ width: '100%' , mb: 4 }}>
             <InputLabel>ID</InputLabel>
             <OutlinedInput
               type="text"
@@ -33,10 +33,11 @@ const SignIn: NextPage = () => {
               id="id"
               label="ID"
               autoComplete="id"
+              sx={{ backgroundColor: '#fff' }}
               {...registerMui(register('id', {
                 required: '* IDを入力してください',
               }))}
-            />
+              />
             <FormHelperText>{errors.id?.message}</FormHelperText>
           </FormControl>
           <FormControl error={!!errors.password} variant="outlined" sx={{ width: '100%', mb: 4 }}>
@@ -47,6 +48,7 @@ const SignIn: NextPage = () => {
               id="password"
               label="PASSWORD"
               autoComplete="current-password"
+              sx={{ backgroundColor: '#fff' }}
               {...registerMui(register('password', {
                 required: '* パスワードを入力してください',
               }))}
