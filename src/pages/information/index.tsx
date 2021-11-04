@@ -1,10 +1,10 @@
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { HeaderDrawer } from '@/components/templates/HeaderDrawer'
 import { ReactElement } from 'react'
 
-const Home = () => {
+const Information = () => {
   return (
-    <>
+    <Box>
       <Typography paragraph>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -32,10 +32,10 @@ const Home = () => {
         eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
         posuere sollicitudin aliquam ultrices sagittis orci a.
       </Typography>
-    </>
+    </Box>
   )
 }
 
-Home.getLayout = (page: ReactElement) => <HeaderDrawer>{page}</HeaderDrawer>
+Information.getLayout = (page: ReactElement) => <HeaderDrawer>{page}</HeaderDrawer>
 
-export default Home
+export default Information
