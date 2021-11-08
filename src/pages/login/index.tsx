@@ -6,14 +6,11 @@ import { Box, Link as AnchorLink, FormControl, Button, Avatar, Typography, FormH
 import { LockOutlined } from '@mui/icons-material'
 
 import type { NextPage } from 'next'
-type AuthFormInput = {
-  id: string;
-  password: string;
-}
+import type { AuthInput } from '@/types/auth/form'
 
 const SignIn: NextPage = () => {
   const { signIn } = useAuth()
-  const { register, handleSubmit, formState: { errors } } = useForm<AuthFormInput>()
+  const { register, handleSubmit, formState: { errors } } = useForm<AuthInput>()
 
   return (
     <Box component="main" sx={{ height: '100vh', backgroundSize: { xs: '12.5rem', md: '20rem' }, backgroundPosition: 'bottom right', backgroundRepeat: 'no-repeat', backgroundImage: 'url("/images/login.svg")', pt: { xs: 16, md: 24 } }}>

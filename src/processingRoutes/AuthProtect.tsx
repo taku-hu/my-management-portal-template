@@ -11,7 +11,7 @@ export const AuthProtect: FC = ({ children }) => {
   const { loginUser, isLoadingLoginUser, sessionCheck } = useAuth()
 
   const isRequiredAuth = router.pathname !== '/login'
-  const isAuthenticated = loginUser?.isAuthenticated
+  const isAuthenticated = loginUser.token
 
   const isLoginPageWithAuthneticated = !isRequiredAuth && isAuthenticated
   const isAuthRequiredPageWithNoAuthneticated = isRequiredAuth && !isAuthenticated
