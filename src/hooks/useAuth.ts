@@ -1,10 +1,12 @@
 import { useCallback, useContext } from 'react'
 import { LoginUserContext } from '@/providers/LoginUserProvider'
 import { useRouter } from 'next/router'
-import { axios, isAxiosError } from '@/libs/axios'
+import { createAxios } from '@/libs/axios'
 
 import type {AuthDto } from '@/types/api/auth'
 import type { AuthInput } from '@/types/auth/form'
+
+const { axios, isAxiosError } = createAxios()
 
 export const useAuth = () => {
   const { loginUser, setLoginUser } = useContext(LoginUserContext)
@@ -14,7 +16,7 @@ export const useAuth = () => {
 
   const signIn = useCallback(async ({ id: username, password }: AuthInput) => {
     try {
-      const { data } = await axios.post<AuthDto>('/api-auth', { username, password })
+      const { data } = await axios.post<AuthDto>('/api/login', { username, password })
       setLoginUser(data)
       router.push('/')
     } catch (err) {
