@@ -10,11 +10,17 @@ export const AuthProtect: FC = ({ children }) => {
   const router = useRouter()
   const { loginUser, isLoadingLoginUser, sessionCheck } = useAuth()
 
-  const isRequiredAuth = router.pathname !== '/login'
-  const isAuthenticated = loginUser.token
-
-  const isLoginPageWithAuthneticated = !isRequiredAuth && isAuthenticated
+  const noAuthRequiredPaths = ['/login']
+  const isRootPage = router.pathname === '/'
+  const isRequiredAuth = isRootPage || !noAuthRequiredPaths.some(path => path.includes(router.pathname))
+  const isAuthenticated = !!loginUser.token
+  
+  const isLoginPage = router.pathname === '/login'
+  // ログインページに認証状態でアクセスした時
+  const isLoginPageWithAuthneticated = isLoginPage && isAuthenticated
+  // 認証が必要なページに非認証状態でアクセスした時
   const isAuthRequiredPageWithNoAuthneticated = isRequiredAuth && !isAuthenticated
+  // ローディングページを表示する条件
   const isNeedToWait = isLoadingLoginUser || isLoginPageWithAuthneticated || isAuthRequiredPageWithNoAuthneticated
 
   useEffect(() => {
@@ -28,7 +34,7 @@ export const AuthProtect: FC = ({ children }) => {
       router.replace('/')
       return
     }
-    // 非認証状態でのログインページ以外へのアクセス時
+    // 非認証状態での認証が必要なページへのアクセス時
     if (isAuthRequiredPageWithNoAuthneticated) {
       router.replace('/login')
     }
