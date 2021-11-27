@@ -1,10 +1,13 @@
-import { memo } from 'react'
+import { useState, memo } from 'react'
+import { useAuth } from '@/hooks/useAuth'
 import { styled } from '@mui/material/styles'
-import { AppBar as MuiAppBar, Toolbar, IconButton } from '@mui/material'
-import { Menu, ChevronLeft } from '@mui/icons-material'
+
+import { Box, AppBar as MuiAppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material'
+import { Menu as MenuIcon, ChevronLeft, MoreVert } from '@mui/icons-material'
+import { Spacer } from '@/components/atoms/Spacer'
 import { drawerWidth } from '@/components/templates/HeaderDrawer'
 
-import type { FC } from 'react'
+import type { FC, MouseEvent } from 'react'
 import type { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 
 type AppBarProps = {
@@ -31,6 +34,11 @@ type Props = {
 }
 
 export const AppBar: FC<Props> = memo(({ isOpen, isMediaXs, handleToggleDrawer }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const { signOut } = useAuth()
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget)
+  const handleClose = () => setAnchorEl(null)
+
   return (
     <StyledAppBar open={isOpen}>
       <Toolbar>
@@ -41,9 +49,29 @@ export const AppBar: FC<Props> = memo(({ isOpen, isMediaXs, handleToggleDrawer }
             edge="start"
             sx={{ marginRight: '36px' }}
             onClick={handleToggleDrawer}
-          >
-            {isOpen ? <ChevronLeft /> : <Menu />}
+            >
+            {isOpen ? <ChevronLeft /> : <MenuIcon />}
           </IconButton>
+        }
+        <Spacer />
+        {isMediaXs &&
+          <Box>
+            <IconButton
+              id="menu-button"
+              color="inherit"
+              onClick={handleClick}
+            >
+              <MoreVert />
+            </IconButton>
+            <Menu
+              id="nav-menu"
+              anchorEl={anchorEl}
+              open={!!anchorEl}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={signOut}>ログアウト</MenuItem>
+            </Menu>
+          </Box>
         }
       </Toolbar>
     </StyledAppBar>
