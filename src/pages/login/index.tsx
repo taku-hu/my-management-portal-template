@@ -1,8 +1,8 @@
-import { useForm } from 'react-hook-form'
 import { registerMui } from '@/utils/registerMui'
+import { useForm } from 'react-hook-form'
 import { useAuth } from '@/hooks/useAuth'
 
-import { Box, Link as AnchorLink, FormControl, Button, Avatar, Typography, FormHelperText, OutlinedInput, InputLabel, colors, Container } from '@mui/material'
+import { Box, Link as MuiLink, FormControl, Button, Avatar, Typography, FormHelperText, OutlinedInput, InputLabel, colors, Container } from '@mui/material'
 import { LockOutlined } from '@mui/icons-material'
 
 import type { NextPage } from 'next'
@@ -64,9 +64,9 @@ const SignIn: NextPage = () => {
       </Container>
       <Typography variant="body2" color="text.secondary" align="center">
         Copyright ©&nbsp;
-        <AnchorLink color="inherit" href="https://www.carsensor.net/shop/chiba/322141001">
+        <MuiLink color="inherit" href="https://www.carsensor.net/shop/chiba/322141001">
           U＆COMPANY
-        </AnchorLink>
+        </MuiLink>
         &nbsp;2021.
       </Typography>
     </Box>

@@ -1,27 +1,29 @@
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
+
 import { Box } from '@mui/material'
 import { AddCircle } from '@mui/icons-material'
+
 import { SubHeader } from '@/components/molecules/SubHeader'
 import { HeaderDrawer } from '@/components/templates/HeaderDrawer'
 
 import type { ReactElement } from 'react'
+import type { SubHeaderProps } from '@/types/ui'
 
 const Information = () => {
   const router = useRouter()
-  const handleClickSubHeaderButton = useCallback(() => {
-    router.push('/information/create')
-  }, [router])
 
-  const subHeaderProps = {
+  const subHeaderProps: SubHeaderProps = {
     breadcrumbs: [
       {
         text: 'お知らせ管理'
       }
     ],
-    buttonText: 'お知らせ作成',
-    buttonIcon: <AddCircle />,
-    handleClickSubHeaderButton
+    button: {
+      text: 'お知らせ作成',
+      icon: <AddCircle />,
+      handleClick: useCallback(() => router.push('/information/create'), [router])
+    }
   }
 
   return (

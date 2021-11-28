@@ -1,23 +1,28 @@
-import { Box, Paper } from '@mui/material'
-import { AddCircle } from '@mui/icons-material'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
+
+import { Box, Paper } from '@mui/material'
+import { AddCircle } from '@mui/icons-material'
+
 import { SubHeader } from '@/components/molecules/SubHeader'
 import { HeaderDrawer } from '@/components/templates/HeaderDrawer'
 
 import type { ReactElement } from 'react'
+import type { SubHeaderProps } from '@/types/ui'
 
 const Reserve = () => {
-  const subHeaderProps = {
+  const subHeaderProps: SubHeaderProps = {
     breadcrumbs: [
       {
         text: '予約管理'
       }
     ],
-    buttonText: '新規作成',
-    buttonIcon: <AddCircle />,
-    handleClickSubHeaderButton: () => {}
+    button: {
+      text: '新規作成',
+      icon: <AddCircle />,
+      handleClick: () => {}
+    }
   }
 
   return (
