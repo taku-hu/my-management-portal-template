@@ -1,6 +1,8 @@
 import { colors, Box, LinearProgress } from '@mui/material'
 
-export const GlobalLoading = () => {
+import type { FC } from 'react'
+
+export const GlobalLoading: FC = () => {
   return (
     <Box sx={{ width: '100%', height: '100%', backgroundColor: colors.grey[50] }}>
       <LinearProgress />
