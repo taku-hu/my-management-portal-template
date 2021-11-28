@@ -65,7 +65,7 @@ export const Drawer: FC<Props> = memo(({ isOpen, signOut }) => {
       <Divider />
       <List>
         {navItems.map(({ title, icon, path }) => {
-          const isCurrentPath = router.pathname === path
+          const isCurrentPath = router.pathname.includes(path)
           return (
             <Link href={path} passHref key={title}>
               <ListItemButton component="a" selected={isCurrentPath}>
