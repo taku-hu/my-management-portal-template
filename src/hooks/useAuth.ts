@@ -1,15 +1,16 @@
 import { useCallback, useContext } from 'react'
-import { LoginUserContext } from '@/providers/LoginUserProvider'
+import { AuthContext } from '@/providers/AuthProvider'
 import { useRouter } from 'next/router'
 import { createAxios } from '@/libs/axios'
 
 import type {AuthDto } from '@/types/api/auth'
+import type { ErrorDto } from '@/types/api/error'
 import type { AuthInput } from '@/types/auth/form'
 
 const { axios, isAxiosError } = createAxios()
 
 export const useAuth = () => {
-  const { loginUser, setLoginUser } = useContext(LoginUserContext)
+  const { loginUser, setLoginUser } = useContext(AuthContext)
   const router = useRouter()
 
   const isLoadingLoginUser = !Object.keys(loginUser).length
@@ -20,8 +21,9 @@ export const useAuth = () => {
       setLoginUser(data)
       router.push('/')
     } catch (err) {
-      const errorNum = isAxiosError(err) ? err.response?.status ?? 500 : 'Unexpected'
-      throw new Error(`${errorNum} Error Occured!`)
+      if (isAxiosError<ErrorDto>(err)) {
+        console.error(err.response?.data)
+      }
     }
   }, [router, setLoginUser])
   const signOut = useCallback(() => setLoginUser({ token: '' }), [setLoginUser])

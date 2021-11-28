@@ -1,8 +1,8 @@
-import { LoginUserProvider } from '@/providers/LoginUserProvider'
+import { AuthProvider } from '@/providers/AuthProvider'
 import type { FC } from 'react'
 
 export const AllProviders: FC = ({ children }) => (
-  <LoginUserProvider>
+  <AuthProvider>
     {children}
-  </LoginUserProvider>
+  </AuthProvider>
 )

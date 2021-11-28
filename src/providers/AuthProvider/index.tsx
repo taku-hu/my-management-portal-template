@@ -3,21 +3,21 @@ import { AuthDto } from '@/types/api/auth'
 
 import type { Dispatch, SetStateAction, FC } from 'react'
 
-type LoginUserContextType = {
+type AuthContextType = {
   loginUser: AuthDto
   setLoginUser: Dispatch<SetStateAction<AuthDto>>
 }
 
-const LoginUserContext = createContext<LoginUserContextType>({} as LoginUserContextType)
+const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
-const LoginUserProvider: FC = ({ children }) => {
+const AuthProvider: FC = ({ children }) => {
   const [loginUser, setLoginUser] = useState<AuthDto>({} as AuthDto)
 
   return (
-    <LoginUserContext.Provider value={{ loginUser, setLoginUser }}>
+    <AuthContext.Provider value={{ loginUser, setLoginUser }}>
       {children}
-    </LoginUserContext.Provider>
+    </AuthContext.Provider>
   )
 }
 
-export { LoginUserContext, LoginUserProvider }
+export { AuthContext, AuthProvider }
