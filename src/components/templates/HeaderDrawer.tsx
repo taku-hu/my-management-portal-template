@@ -56,9 +56,7 @@ export const HeaderDrawer: FC = ({ children }) => {
 
       <Box component="main" sx={{ flexGrow: 1 }}>
         <StyledDrawerHeader />
-        <Box sx={{ p: 2 }}>
-          {children}
-        </Box>
+        {children}
       </Box>
 
       {isMediaXs && <BottomNav />}
