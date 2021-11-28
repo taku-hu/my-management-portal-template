@@ -14,11 +14,11 @@ const CarsCreate = () => {
   const subHeaderProps = {
     breadcrumbs: [
       {
-        text: '車管理',
+        text: 'お知らせ管理',
         href: '/information'
       },
       {
-        text: '新車種追加'
+        text: 'お知らせ作成'
       }
     ],
     buttonText: isEditing ? '保存' : '新規作成',
