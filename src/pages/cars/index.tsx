@@ -1,11 +1,33 @@
+import { useCallback } from 'react'
+import { useRouter } from 'next/router'
 import { Box, Typography, Card, CardContent, CardMedia, Grid, Button } from '@mui/material'
+import { AddCircle } from '@mui/icons-material'
+import { SubHeader } from '@/components/molecules/SubHeader'
 import { HeaderDrawer } from '@/components/templates/HeaderDrawer'
 
 import type { ReactElement } from 'react'
 
 const Cars = () => {
+  const router = useRouter()
+  const handleClickSubHeaderButton = useCallback(() => {
+    router.push('/cars/create')
+  }, [router])
+
+  const subHeaderProps = {
+    breadcrumbs: [
+      {
+        text: '車管理'
+      }
+    ],
+    buttonText: '新車種追加',
+    buttonIcon: <AddCircle />,
+    handleClickSubHeaderButton
+  }
+
   return (
     <Box>
+      <SubHeader {...subHeaderProps} sx={{ mb: 2 }} />
+
       <Grid container spacing={1} sx={{ p: 1 }}>
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Card square sx={{ display: 'flex' }}>
