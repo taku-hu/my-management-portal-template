@@ -1,6 +1,6 @@
 import defaultAxios from 'axios'
-import type { AxiosError } from 'axios'
 
+import type { AxiosError } from 'axios'
 import type { NextApiRequest } from 'next'
 
 export const createAxios = (cookie?: NextApiRequest['headers']['cookie']) => {

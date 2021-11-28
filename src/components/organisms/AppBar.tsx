@@ -1,11 +1,12 @@
 import { useState, memo } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { styled } from '@mui/material/styles'
+import { drawerWidth } from '@/components/templates/HeaderDrawer'
 
 import { Box, AppBar as MuiAppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material'
 import { Menu as MenuIcon, ChevronLeft, MoreVert } from '@mui/icons-material'
+
 import { Spacer } from '@/components/atoms/Spacer'
-import { drawerWidth } from '@/components/templates/HeaderDrawer'
 
 import type { FC, MouseEvent } from 'react'
 import type { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'

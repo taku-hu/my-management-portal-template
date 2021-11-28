@@ -1,25 +1,15 @@
 import { memo } from 'react'
 import { Toolbar, Button, Breadcrumbs, Typography, Link as MuiLink } from '@mui/material'
-import { Spacer } from '@/components/atoms/Spacer'
 import Link from 'next/link'
 
-import type { FC, ReactNode } from 'react'
-import type { SxProps } from '@mui/system'
+import { Spacer } from '@/components/atoms/Spacer'
 
-type MyBreadCrumsProps = {
-  text: string
-  href?: string
-}[]
+import type { FC } from 'react'
+import type { SubHeaderProps } from '@/types/ui'
 
-type Props = {
-  breadcrumbs: MyBreadCrumsProps
-  buttonText?: string
-  buttonIcon?: ReactNode
-  handleClickSubHeaderButton?: () => void
-  sx?: SxProps
-}
+type Props = SubHeaderProps
 
-export const SubHeader: FC<Props> = memo(({ breadcrumbs, buttonText, buttonIcon, handleClickSubHeaderButton, sx }) => {
+export const SubHeader: FC<Props> = memo(({ breadcrumbs, button, sx }) => {
   const breadcrumbsChildren = breadcrumbs.map(({ text, href }) => href ?
     (<Link href={href} passHref key={text}>
       <MuiLink>{text}</MuiLink>
@@ -31,7 +21,7 @@ export const SubHeader: FC<Props> = memo(({ breadcrumbs, buttonText, buttonIcon,
     <Toolbar sx={{ backgroundColor: '#fff', ...sx }}>
       <Spacer />
       <Breadcrumbs separator="›" sx={{ mr: 2 }}>{breadcrumbsChildren}</Breadcrumbs>
-      {buttonText && <Button variant="contained" startIcon={buttonIcon} onClick={handleClickSubHeaderButton}>{buttonText}</Button>}
+      {button && <Button variant="contained" startIcon={button.icon} onClick={button.handleClick}>{button.text}</Button>}
     </Toolbar>
   )
 })

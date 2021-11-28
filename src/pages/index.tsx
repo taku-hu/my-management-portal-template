@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { GlobalLoading } from '@/components/molecules/GlobalLoading'
+import { GlobalLoading } from '@/components/templates/GlobalLoading'
 
 import type { NextPage } from 'next'
 

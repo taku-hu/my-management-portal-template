@@ -1,7 +1,8 @@
+import { navItems } from '@/components/templates/HeaderDrawer'
 import { memo } from 'react'
 import { useRouter } from 'next/router'
+
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material'
-import { navItems } from '@/components/templates/HeaderDrawer'
 
 import type { FC } from 'react'
 

@@ -1,4 +1,5 @@
 import { memo } from 'react'
+
 import { Box } from '@mui/material'
 
 import type { FC } from 'react'

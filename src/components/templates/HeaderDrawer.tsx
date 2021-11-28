@@ -1,10 +1,12 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, memo } from 'react'
 import { useAuth } from '@/hooks/useAuth'
+
 import { useMediaQuery, useTheme, Box } from '@mui/material'
 import { InfoOutlined, DirectionsCarFilled, EventNote } from '@mui/icons-material'
-import { AppBar } from '@/components/molecules/AppBar'
-import { StyledDrawerHeader, Drawer } from '@/components/molecules/Drawer'
-import { BottomNav } from '@/components/molecules/BottomNav'
+
+import { AppBar } from '@/components/organisms/AppBar'
+import { StyledDrawerHeader, Drawer } from '@/components/organisms/Drawer'
+import { BottomNav } from '@/components/organisms/BottomNav'
 
 import type { FC } from 'react'
 
@@ -27,7 +29,7 @@ export const navItems = [
   }
 ]
 
-export const HeaderDrawer: FC = ({ children }) => {
+export const HeaderDrawer: FC = memo(({ children }) => {
   const theme = useTheme()
   const isMediaXs = useMediaQuery(theme.breakpoints.only('xs'))
   const { signOut } = useAuth()
@@ -62,4 +64,5 @@ export const HeaderDrawer: FC = ({ children }) => {
       {isMediaXs && <BottomNav />}
     </Box>
   )
-}
+})
+HeaderDrawer.displayName = 'HeaderDrawer'

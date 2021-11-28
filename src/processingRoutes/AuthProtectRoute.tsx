@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/useAuth'
 
-import { GlobalLoading } from '@/components/molecules/GlobalLoading'
+import { GlobalLoading } from '@/components/templates/GlobalLoading'
 
 import type { FC } from 'react'
 
